@@ -39,7 +39,7 @@ class Admin::EventTicketsController < AdminController
   protected
 
   def find_event
-    @event = Event.find(params[:id])
+    @event = Event.find(params[:event_id])
   end
 
   def ticket_params
