@@ -29,7 +29,7 @@ class Admin::EventsController < AdminController
   def edit
     #@event = Event.find_by_friendly_id!(params[:id])
     @event = Event.find(params[:id])
-    @event.tickets.build
+    @event.tickets.build if @event.tickets.empty?
     #@event.tickets.build
     #@event.tickets.build
   end
