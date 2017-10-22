@@ -5,11 +5,15 @@ class Admin::EventsController < AdminController
   end
 
   def show
+    #@event = Event.find_by_friendly_id!(params[:id])
     @event = Event.find(params[:id])
   end
 
   def new
     @event = Event.new
+    @event.tickets.build
+    #@event.tickets.build
+    #@event.tickets.build
   end
 
   def create
@@ -23,12 +27,16 @@ class Admin::EventsController < AdminController
   end
 
   def edit
+    #@event = Event.find_by_friendly_id!(params[:id])
     @event = Event.find(params[:id])
+    @event.tickets.build
+    #@event.tickets.build
+    #@event.tickets.build
   end
 
   def update
+    #@event = Event.find_by_friendly_id!(params[:id])
     @event = Event.find(params[:id])
-
     if @event.update(event_params)
       redirect_to admin_events_path
     else
@@ -37,6 +45,7 @@ class Admin::EventsController < AdminController
   end
 
   def destroy
+    #@event = Event.find_by_friendly_id!(params[:id])
     @event = Event.find(params[:id])
     @event.destroy
 
@@ -46,7 +55,7 @@ class Admin::EventsController < AdminController
   protected
 
   def event_params
-    params.require(:event).permit(:name, :description)
+    params.require(:event).permit(:name, :description, :friendly_id, :status, :category_id, :tickets_attributes => [:id, :name, :description, :price, :_destroy])
   end
 
 end
